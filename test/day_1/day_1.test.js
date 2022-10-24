@@ -1,7 +1,9 @@
 const Loader = require("../../src/utils/loader");
 const Measurement = require("../../src/day_1/day_1");
 const mockPath = "./test/day_1/mock.txt";
+const mock2Path = "./test/day_1/mock_2.txt";
 const dataPath = "./test/day_1/data.txt";
+const data2Path = "./test/day_1/data_2.txt";
 
 const loader = new Loader();
 const measurement = new Measurement();
