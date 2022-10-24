@@ -22,7 +22,7 @@ describe("Loader", () => {
     });
     it("Number of my puzzle rows should be correct.", () => {
       const rows = loader.load(data2Path);
-      expect(rows.length).toEqual(1000);
+      expect(rows.length).toEqual(2000);
     });
   });
 });
