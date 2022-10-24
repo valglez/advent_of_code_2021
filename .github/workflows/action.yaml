@@ -7,4 +7,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run jest tests
-      uses: anna-money/github-actions-npm@v2
+      uses: anna-money/github-actions-npm@v3
