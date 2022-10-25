@@ -23,7 +23,7 @@ describe("Day 1", () => {
       expect(value).toEqual(1559);
     });
     it("Should return triple sliding arrays.", () => {
-      const value = measurement.group(mock2Rows);
+      const value = measurement.group(mock2Rows, 3);
       expect(value).toEqual([
         ["199", "200", "208"],
         ["200", "208", "210"],

@@ -1,8 +1,7 @@
 class Measurement {
-  group(data) {
+  group(data, size) {
     try {
-      let arrs = [],
-        size = 3;
+      let arrs = [];
       for (let i = 0; i < data.length; i++) arrs.push(data.slice(i, i + size));
       return arrs.splice(0, data.length - 2);
     } catch (error) {
@@ -11,8 +10,8 @@ class Measurement {
   }
   sum(data) {
     try {
-      const arr = this.group(data)
-      return arr.map(i => i.reduce((sum, item) => sum += Number(item), 0));
+      const arr = this.group(data, 3);
+      return arr.map((i) => i.reduce((sum, item) => (sum += Number(item)), 0));
     } catch (error) {
       console.error("Error while calculating; ", error.message || error);
     }
