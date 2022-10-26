@@ -1,5 +1,5 @@
 class Decoder {
-  formatData(data) {
+  formatInstruction(data) {
     try {
       const size = data.length;
       let arrs = [];
@@ -10,15 +10,17 @@ class Decoder {
     }
   }
   decode(data) {
-    const instruction = this.formatData(data);
+    const instruction = this.formatInstruction(data);
     try {
-      switch (instruction[0][0]) {
-        case "up":
-          return { direction: 1, inc: Number(instruction[0][1]) };
-        case "down":
-          return { direction: 2, inc: Number(instruction[0][1]) };
-        case "forward":
-          return { direction: 0, inc: Number(instruction[0][1]) };
+      for (let i = 0; i < instruction.length; i++) {
+        switch (instruction[i][0]) {
+          case "up":
+            return { direction: 1, inc: Number(instruction[0][1]) };
+          case "down":
+            return { direction: 2, inc: Number(instruction[0][1]) };
+          case "forward":
+            return { direction: 0, inc: Number(instruction[0][1]) };
+        }
       }
     } catch (error) {
       console.error(error.message || error);
