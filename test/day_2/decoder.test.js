@@ -7,9 +7,9 @@ const decoder = new Decoder();
 
 describe("Day 2", () => {
   const mockRows = loader.load2(mockPath);
-  describe("Depth measurement", () => {
+  describe("Instructions decoder", () => {
     it("Should be the same as the resolved one.", () => {
-      const value = decoder.formatData(mockRows);
+      const value = decoder.formatInstruction(mockRows);
       expect(value).toEqual([
         ["forward", "5"],
         ["down", "5"],
@@ -19,15 +19,15 @@ describe("Day 2", () => {
         ["forward", "2"],
       ]);
     });
-    it("Should be the same as the resolved one.", () => {
+    it("Should be the instruction for 'forward'.", () => {
       const value = decoder.decode(["forward", "5"]);
       expect(value).toEqual({ direction: 0, inc: 5 });
     });
-    it("Should be the same as the resolved one.", () => {
+    it("Should be the instruction for 'up'.", () => {
       const value = decoder.decode(["up", "3"]);
       expect(value).toEqual({ direction: 1, inc: 3 });
     });
-    it("Should be the same as the resolved one.", () => {
+    it("Should be the instruction for 'down'.", () => {
       const value = decoder.decode(["down", "8"]);
       expect(value).toEqual({ direction: 2, inc: 8 });
     });
