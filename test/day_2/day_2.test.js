@@ -1,15 +1,15 @@
 const Loader = require("../../src/utils/loader");
-const Coordinates = require("../../src/day_2/coordinates");
+const Decoder = require("../../src/day_2/decoder");
 const mockPath = "./test/day_2/mock.txt";
 
 const loader = new Loader();
-const coordinates = new Coordinates();
+const decoder = new Decoder();
 
 describe("Day 2", () => {
   const mockRows = loader.load2(mockPath);
   describe("Depth measurement", () => {
     it("Should be the same as the resolved one.", () => {
-      const value = coordinates.group(mockRows);
+      const value = decoder.formatData(mockRows);
       expect(value).toEqual([
         ["forward", "5"],
         ["down", "5"],

@@ -1,5 +1,5 @@
-class Coordinates {
-  group(data) {
+class Decoder {
+  formatData(data) {
     try {
       const size = data.length;
       let arrs = [];
@@ -11,4 +11,4 @@ class Coordinates {
   }
 }
 
-module.exports = Coordinates;
+module.exports = Decoder;
