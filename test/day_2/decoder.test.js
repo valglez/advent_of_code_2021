@@ -19,9 +19,45 @@ describe("Day 2", () => {
         ["forward", 2],
       ]);
     });
-    it("Should be the same as the resolved one.", () => {
-      const value = decoder.movement(mockRows);
-      expect(value).toEqual(0);
+    it("Should decode the instruction for 'forward'.", () => {
+      const value = decoder.decode(["forward", 5]);
+      expect(value).toEqual({ direction: 0, inc: 5 });
+    });
+    it("Should decode the instruction for 'up'.", () => {
+      const value = decoder.decode(["up", 3]);
+      expect(value).toEqual({ direction: 1, inc: 3 });
+    });
+    it("Should decode the instruction for 'down'.", () => {
+      const value = decoder.decode(["down", 5]);
+      expect(value).toEqual({ direction: 2, inc: 5 });
+    });
+    // it("Should return the coordenade for this direction.", () => {
+    //   decoder.movement({ direction: 0, inc: 5 });
+    //   decoder.movement({ direction: 0, inc: 10 });
+    //   const value = decoder.getCoordX();
+    //   expect(value).toEqual(15);
+    // });
+    // it("Should return the coordenade for this direction.", () => {
+    //   decoder.movement({ direction: 1, inc: 3 });
+    //   const value = decoder.getCoordY();
+    //   expect(value).toEqual(-3);
+    // });
+    // it("Should return the coordenade for this direction.", () => {
+    //   decoder.movement({ direction: 2, inc: 5 });
+    //   decoder.movement({ direction: 2, inc: 8 });
+    //   const value = decoder.getCoordY();
+    //   expect(value).toEqual(10);
+    // });
+    it("Should return the coordenade for 'forward'.", () => {
+      decoder.reset();
+      decoder.exec(mockRows);
+      const value = decoder.getCoordX();
+      expect(value).toEqual(15);
+    });
+    it("Should return the coordenade for 'depth'.", () => {
+      decoder.exec(mockRows);
+      const value = decoder.getCoordY();
+      expect(value).toEqual(10);
     });
   });
 });

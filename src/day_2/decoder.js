@@ -15,25 +15,20 @@ class Decoder {
       console.error("Error while grouping: ", error.message || error);
     }
   }
-  iterate(data) {
-    try {
-      for (let i = 0; i < data.length; i++) {
-        this.decode(data[i]);
-      }
-    } catch (error) {
-      console.error("Error while grouping: ", error.message || error);
-    }
+  exec(rawData) {
+    const formatedData = this.formatInstruction(rawData);
+    formatedData.map((instruction) => this.movement(this.decode(instruction)));
   }
-  decode(data) {
+  decode(instruction) {
     try {
-      if (data[0] == "up") {
-        this.movement({ direction: 1, inc: data[1] });
+      if (instruction[0] == "up") {
+        return { direction: 1, inc: instruction[1] };
       }
-      if (data[0] == "down") {
-        this.movement({ direction: 2, inc: data[1] });
+      if (instruction[0] == "down") {
+        return { direction: 2, inc: instruction[1] };
       }
-      if (data[0] == "forward") {
-        this.movement({ direction: 0, inc: data[1] });
+      if (instruction[0] == "forward") {
+        return { direction: 0, inc: instruction[1] };
       }
     } catch (error) {
       console.error(error.message || error);
@@ -42,17 +37,27 @@ class Decoder {
   movement(data) {
     try {
       if (data.direction == "0") {
-        // this.x = +data.inc;
+        this.x += data.inc;
       }
       if (data.direction == "1") {
-        // this.y = -data.inc;
+        this.y -= data.inc;
       }
       if (data.direction == "2") {
-        // this.y = +data.inc;
+        this.y += data.inc;
       }
     } catch (error) {
       console.error(error.message || error);
     }
+  }
+  reset() {
+    this.x = 0;
+    this.y = 0;
+  }
+  getCoordX() {
+    return this.x;
+  }
+  getCoordY() {
+    return this.y;
   }
 }
 
