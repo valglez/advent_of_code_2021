@@ -3,14 +3,14 @@ class Decoder {
     this.x = 0;
     this.y = 0;
   }
-  formatInstruction(data) {
+  formatInstruction(rawData) {
     try {
-      let arrs = [];
-      for (let i = 0; i < data.length; i += 2) arrs.push(data.slice(i, i + 2));
-      for (let i in arrs) {
-        arrs[i][1] = +arrs[i][1];
+      let arr = [];
+      for (let i = 0; i < rawData.length; i += 2) arr.push(rawData.slice(i, i + 2));
+      for (let i in arr) {
+        arr[i][1] = +arr[i][1];
       }
-      return arrs;
+      return arr;
     } catch (error) {
       console.error("Error while grouping: ", error.message || error);
     }
@@ -34,30 +34,33 @@ class Decoder {
       console.error(error.message || error);
     }
   }
-  movement(data) {
+  movement(decodedInstruction) {
     try {
-      if (data.direction == "0") {
-        this.x += data.inc;
+      if (decodedInstruction.direction == "0") {
+        return (this.x += decodedInstruction.inc);
       }
-      if (data.direction == "1") {
-        this.y -= data.inc;
+      if (decodedInstruction.direction == "1") {
+        return (this.y -= decodedInstruction.inc);
       }
-      if (data.direction == "2") {
-        this.y += data.inc;
+      if (decodedInstruction.direction == "2") {
+        return (this.y += decodedInstruction.inc);
       }
     } catch (error) {
       console.error(error.message || error);
     }
-  }
-  reset() {
-    this.x = 0;
-    this.y = 0;
   }
   getCoordX() {
     return this.x;
   }
   getCoordY() {
     return this.y;
+  }
+  getMultiplyCoord() {
+    return this.x * this.y;
+  }
+  reset() {
+    this.x = 0;
+    this.y = 0;
   }
 }
 
