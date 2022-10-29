@@ -12,7 +12,7 @@ const dataPath = "./test/day_2/data.txt";
 describe("Day 2", () => {
   const mockRows = loader.load2(mockPath);
   const dataRows = loader.load2(dataPath);
-  describe("Decoding of instructions for the calculation of coordinates", () => {
+  describe("Interpretation of decoded instructions to obtain the coordinates and subsequent multiplication of both", () => {
     it("Should return the coordinate for this direction.", () => {
       engine.movement({ direction: 0, inc: 5 });
       engine.movement({ direction: 0, inc: 10 });
