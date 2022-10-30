@@ -1,4 +1,8 @@
 class Consumption {
+  constructor() {
+    this.gamma = [];
+    this.epsilon = [];
+  }
   getColumn(arr, n) {
     let column = [];
     for (let i = 0; i < arr.length; i++) {
@@ -18,9 +22,14 @@ class Consumption {
     }
     return 0;
   }
-//   TO-DO
-//   getGamma(most) {
-
+  getGamma(most) {
+    let common = most;
+    return (this.gamma += common);
+  }
+//   getDecimalGamma() {
+//     console.log(this.gamma)
+//     const decimal = parseInt(this.gamma, 10)
+//     return decimal
 //   }
 }
 

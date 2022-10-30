@@ -38,11 +38,19 @@ describe("Day 3", () => {
       const value = consumption.getMostCommonBit(colArray);
       expect(value).toEqual(0);
     });
-    // TO-DO
-    // it("Should be 10110.", () => {
-    //   const mostCommon = consumption.getMostCommonBit(colArray);
-    //   const value = consumption.getGamma(mostCommon);
-    //   expect(value).toEqual(10110);
+    it("Should be 10110.", () => {
+      const test = () => {
+        for (let i = 0; i < 5; i++) {
+          const col = consumption.getColumn(mockRows, i);
+          const mostCommon = consumption.getMostCommonBit(col);
+          const value = consumption.getGamma(mostCommon);
+          expect(value).toEqual("10110");
+        }
+      };
+    });
+    // it("Should be 22.", () => {
+    //   const value = consumption.getDecimalGamma();
+    //   expect(value).toEqual(22);
     // });
   });
 });
