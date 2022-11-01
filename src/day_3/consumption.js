@@ -2,6 +2,14 @@ class Consumption {
   constructor() {
     this.gamma = [];
     this.epsilon = [];
+    this.decimalGamma = 0;
+    this.decimalEpsilon = 0;
+  }
+  exec(arr) {
+    for (let i = 0; i < arr[0].length; i++) {
+      this.getMostCommonBit(this.getColumn(arr, i));
+      this.getLeastCommonBit(this.getColumn(arr, i));
+    }
   }
   getColumn(arr, n) {
     let column = [];
@@ -18,19 +26,43 @@ class Consumption {
       }
     }
     if (countOne > col.length / 2) {
-      return 1;
+      return (this.gamma += "1");
     }
-    return 0;
+    return (this.gamma += "0");
   }
-  getGamma(most) {
-    let common = most;
-    return (this.gamma += common);
+  getLeastCommonBit(col) {
+    let countOne = 0;
+    for (let i = 0; i < col.length; i++) {
+      if (col[i] == 1) {
+        countOne++;
+      }
+    }
+    if (countOne > col.length / 2) {
+      return (this.epsilon += "0");
+    }
+    return (this.epsilon += "1");
   }
-//   getDecimalGamma() {
-//     console.log(this.gamma)
-//     const decimal = parseInt(this.gamma, 10)
-//     return decimal
-//   }
+  getGamma() {
+    return this.gamma;
+  }
+  getDecimalGamma(bitGamma) {
+    return (this.decimalGamma += parseInt(bitGamma, 2));
+  }
+  getEpsilon() {
+    return this.epsilon;
+  }
+  getDecimalEpsilon(bitEpsilon) {
+    return (this.decimalEpsilon += parseInt(bitEpsilon, 2));
+  }
+  getMultiply() {
+    return this.decimalGamma * this.decimalEpsilon;
+  }
+  reset() {
+    this.gamma = [];
+    this.epsilon = [];
+    this.decimalEpsilon = 0;
+    this.decimalGamma = 0;
+  }
 }
 
 module.exports = Consumption;

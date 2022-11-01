@@ -4,6 +4,6 @@
 
 My solutions to the Advent of Code 2021.
 
-Score: ⭐️⭐️⭐️⭐️
+Score: ⭐️⭐️⭐️⭐️⭐️
 
 https://adventofcode.com/2021
