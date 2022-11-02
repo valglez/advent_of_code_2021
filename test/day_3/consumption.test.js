@@ -2,9 +2,10 @@ const Loader = require("../../src/utils/loader");
 const Consumption = require("../../src/day_3/consumption");
 
 const loader = new Loader();
-const consumption = new Consumption();
-
 const mockPath = "./test/day_3/mock.txt";
+const mockRows = loader.load(mockPath);
+const consumption = new Consumption(mockRows);
+
 const dataPath = "./test/day_3/data.txt";
 
 describe("Day 3", () => {
@@ -98,6 +99,14 @@ describe("Day 3", () => {
     it("Should be 741950.", () => {
       value = consumption.getMultiply();
       expect(value).toEqual(741950);
+    });
+    it("Should be an array with the rows that have this mcb in the first position.", () => {
+      consumption.reset()
+      const recd = ["11110", "10110", "10111", "10101", "11100", "10000", "11001"]
+      const col = consumption.getColumn(mockRows, 0);
+      const mcb = consumption.getMostCommonBit(col)
+      const value = consumption.getRowsForMCB(mockRows, mcb);
+      expect(value).toEqual(recd);
     });
   });
 });

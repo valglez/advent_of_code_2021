@@ -4,6 +4,7 @@ class Consumption {
     this.epsilon = [];
     this.decimalGamma = 0;
     this.decimalEpsilon = 0;
+    this.raw = [];
   }
   exec(arr) {
     for (let i = 0; i < arr[0].length; i++) {
@@ -17,6 +18,14 @@ class Consumption {
       column.push(arr[i][n]);
     }
     return column;
+  }
+  getRowsForMCB(data, mcb) {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].startsWith(mcb) == true) {
+        this.raw.push(data[i]);
+      }
+    }
+    return this.raw;
   }
   getMostCommonBit(col) {
     let countOne = 0;
