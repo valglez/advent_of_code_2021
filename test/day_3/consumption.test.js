@@ -4,7 +4,7 @@ const Consumption = require("../../src/day_3/consumption");
 const loader = new Loader();
 const mockPath = "./test/day_3/mock.txt";
 const mockRows = loader.load(mockPath);
-const consumption = new Consumption(mockRows);
+const consumption = new Consumption();
 
 const dataPath = "./test/day_3/data.txt";
 
@@ -100,13 +100,103 @@ describe("Day 3", () => {
       value = consumption.getMultiply();
       expect(value).toEqual(741950);
     });
-    it("Should be an array with the rows that have this mcb in the first position.", () => {
-      consumption.reset()
-      const recd = ["11110", "10110", "10111", "10101", "11100", "10000", "11001"]
-      const col = consumption.getColumn(mockRows, 0);
-      const mcb = consumption.getMostCommonBit(col)
-      const value = consumption.getRowsForMCB(mockRows, mcb);
+    it("Should be an array with the filter element by this char and position.", () => {
+      consumption.reset();
+      const recd = [
+        "11110",
+        "10110",
+        "10111",
+        "10101",
+        "11100",
+        "10000",
+        "11001",
+      ];
+      const value = consumption.filterElementByCharInPosition(mockRows, 1, 0);
       expect(value).toEqual(recd);
+    });
+    it("Should be the oxygen generator rating in binary.", () => {
+      consumption.reset();
+      consumption.exec(mockRows);
+      const recd = ["10111"];
+      const value = consumption.getOxygenBinary(mockRows);
+      expect(value).toEqual(recd);
+    });
+    it("Should be the oxygen generator rating in binary.", () => {
+      consumption.reset();
+      consumption.exec(mockRows);
+      const recd = ["101111011100"];
+      const value = consumption.getOxygenBinary(dataRows);
+      expect(value).toEqual(recd);
+    });
+    it("Should be the oxygen generator rating in decimal.", () => {
+      consumption.reset();
+      consumption.exec(mockRows);
+      const value = consumption.getOxygen(mockRows);
+      expect(value).toEqual(23);
+    });
+    it("Should be the oxygen generator rating in decimal.", () => {
+      consumption.reset();
+      consumption.exec(dataRows);
+      const value = consumption.getOxygen(dataRows);
+      expect(value).toEqual(191);
+    });
+    it("Should be an array with the filter element by this char and position.", () => {
+      consumption.reset();
+      const recd = ["00100", "01111", "00111", "00010", "01010"];
+      const value = consumption.filterElementByCharInPosition(mockRows, 0, 0);
+      expect(value).toEqual(recd);
+    });
+    it("Should be an array with the filter element by this char and position.", () => {
+      consumption.reset();
+      const input = ["00100", "01111", "00111", "00010", "01010"];
+      const recd = ["01111", "01010"];
+      const value = consumption.filterElementByCharInPosition(input, 1, 1);
+      expect(value).toEqual(recd);
+    });
+    it("Should be an array with the filter element by this char and position.", () => {
+      consumption.reset();
+      const input = ["01111", "01010"];
+      const recd = ["01010"];
+      const value = consumption.filterElementByCharInPosition(input, 0, 2);
+      expect(value).toEqual(recd);
+    });
+    it("Should be the CO2 scrubber rating in binary.", () => {
+      consumption.reset();
+      consumption.exec(mockRows);
+      const recd = ["01010"];
+      const value = consumption.getCO2Binary(mockRows);
+      expect(value).toEqual(recd);
+    });
+    it("Should be the CO2 scrubber rating in binary.", () => {
+      consumption.reset();
+      consumption.exec(dataRows);
+      const recd = ["111101000110"];
+      const value = consumption.getCO2Binary(dataRows);
+      expect(value).toEqual(recd);
+    });
+    it("Should be CO2 scrubber rating in decimal.", () => {
+      consumption.reset();
+      consumption.exec(mockRows);
+      const value = consumption.getCO2(mockRows);
+      expect(value).toEqual(10);
+    });
+    it("Should be CO2 scrubber rating in decimal.", () => {
+      consumption.reset();
+      consumption.exec(dataRows);
+      const value = consumption.getCO2(dataRows);
+      expect(value).toEqual(3910);
+    });
+    it("Should be the result.", () => {
+      consumption.reset();
+      consumption.exec(mockRows);
+      const value = consumption.getResult(mockRows);
+      expect(value).toEqual(230);
+    });
+    it("Should be the result.", () => {
+      consumption.reset();
+      consumption.exec(dataRows);
+      const value = consumption.getResult(dataRows);
+      expect(value).toEqual(746810);
     });
   });
 });
