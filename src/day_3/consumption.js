@@ -18,6 +18,30 @@ class Consumption {
     }
     return column;
   }
+  getMostCommonBitForCriteria(col) {
+    let countOne = 0;
+    let countZero = 0;
+    for (let i = 0; i < col.length; i++) {
+      if (col[i] == 0) {
+        countZero++;
+      } else {
+        countOne++;
+      }
+    }
+    return countZero > countOne ? "0" : "1";
+  }
+  getLeastCommonBitForCriteria(col) {
+    let countOne = 0;
+    let countZero = 0;
+    for (let i = 0; i < col.length; i++) {
+      if (col[i] == 0) {
+        countZero++;
+      } else {
+        countOne++;
+      }
+    }
+    return countZero > countOne ? "1" : "0";
+  }
   filterElementByCharInPosition(arr, char, position) {
     let result = [];
     for (let i = 0; i < arr.length; i++) {
@@ -29,41 +53,36 @@ class Consumption {
   }
   getOxygenBinary(arr) {
     let posicion = 0;
-    const mcb = [...this.gamma];
-    mcb[mcb.length - 1] = "1";
     while (arr.length > 1) {
-      for (let i = 0; i < mcb.length; i++) {
-        arr = this.filterElementByCharInPosition(arr, mcb[i], posicion);
-        posicion++;
-      }
+      arr = this.filterElementByCharInPosition(
+        arr,
+        this.getMostCommonBitForCriteria(this.getColumn(arr, posicion)),
+        posicion
+      );
+      posicion++;
     }
     return arr;
   }
   getCO2Binary(arr) {
     let posicion = 0;
-    const lcb = [...this.epsilon];
     while (arr.length > 1) {
-      arr = this.filterElementByCharInPosition(arr, lcb[posicion], posicion);
+      arr = this.filterElementByCharInPosition(
+        arr,
+        this.getLeastCommonBitForCriteria(this.getColumn(arr, posicion)),
+        posicion
+      );
       posicion++;
     }
     return arr;
   }
   getOxygen(res) {
-    const result = this.getOxygenBinary(res);
-    const decimal = parseInt(result, 2);
-    return decimal;
+    return parseInt(this.getOxygenBinary(res), 2);
   }
   getCO2(res) {
-    const result = this.getCO2Binary(res);
-    const decimal = parseInt(result, 2);
-    return decimal;
+    return parseInt(this.getCO2Binary(res), 2);
   }
   getResult(res) {
-    const oxy = this.getOxygenBinary(res);
-    const decimalOxy = parseInt(oxy, 2);
-    const CO2 = this.getCO2Binary(res);
-    const decimalCO2 = parseInt(CO2, 2);
-    return decimalOxy * decimalCO2;
+    return this.getOxygen(res) * this.getCO2(res);
   }
   getMostCommonBit(col) {
     let countOne = 0;
@@ -72,10 +91,7 @@ class Consumption {
         countOne++;
       }
     }
-    if (countOne > col.length / 2) {
-      return (this.gamma += 1);
-    }
-    return (this.gamma += 0);
+    return countOne > col.length / 2 ? (this.gamma += 1) : (this.gamma += 0);
   }
   getLeastCommonBit(col) {
     let countOne = 0;
@@ -84,11 +100,7 @@ class Consumption {
         countOne++;
       }
     }
-    if (countOne > col.length / 2) {
-      return (this.epsilon += 0);
-    } else {
-      return (this.epsilon += 1);
-    }
+    return countOne > col.length / 2 ? (this.epsilon += 0) : (this.epsilon += 1);
   }
   getGamma() {
     return this.gamma;

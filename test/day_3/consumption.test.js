@@ -101,7 +101,6 @@ describe("Day 3", () => {
       expect(value).toEqual(741950);
     });
     it("Should be an array with the filter element by this char and position.", () => {
-      consumption.reset();
       const recd = [
         "11110",
         "10110",
@@ -114,77 +113,51 @@ describe("Day 3", () => {
       const value = consumption.filterElementByCharInPosition(mockRows, 1, 0);
       expect(value).toEqual(recd);
     });
+    it("Should be the most common bit for this column.", () => {
+      const col = consumption.getColumn(mockRows, 0);
+      const value = consumption.getMostCommonBitForCriteria(col);
+      expect(value).toEqual("1");
+    });
     it("Should be the oxygen generator rating in binary.", () => {
-      consumption.reset();
-      consumption.exec(mockRows);
       const recd = ["10111"];
       const value = consumption.getOxygenBinary(mockRows);
       expect(value).toEqual(recd);
     });
     it("Should be the oxygen generator rating in binary.", () => {
-      consumption.reset();
-      consumption.exec(mockRows);
-      const recd = ["101111011100"];
+      const recd = ["000100011010"];
       const value = consumption.getOxygenBinary(dataRows);
       expect(value).toEqual(recd);
     });
     it("Should be the oxygen generator rating in decimal.", () => {
-      consumption.reset();
-      consumption.exec(mockRows);
       const value = consumption.getOxygen(mockRows);
       expect(value).toEqual(23);
     });
     it("Should be the oxygen generator rating in decimal.", () => {
-      consumption.reset();
-      consumption.exec(dataRows);
       const value = consumption.getOxygen(dataRows);
-      expect(value).toEqual(191);
+      expect(value).toEqual(282);
     });
-    it("Should be an array with the filter element by this char and position.", () => {
-      consumption.reset();
-      const recd = ["00100", "01111", "00111", "00010", "01010"];
-      const value = consumption.filterElementByCharInPosition(mockRows, 0, 0);
-      expect(value).toEqual(recd);
+    it("Should be the most common bit for this column.", () => {
+      const col = consumption.getColumn(mockRows, 0);
+      const value = consumption.getLeastCommonBitForCriteria(col);
+      expect(value).toEqual("0");
     });
-    it("Should be an array with the filter element by this char and position.", () => {
-      consumption.reset();
-      const input = ["00100", "01111", "00111", "00010", "01010"];
-      const recd = ["01111", "01010"];
-      const value = consumption.filterElementByCharInPosition(input, 1, 1);
-      expect(value).toEqual(recd);
-    });
-    it("Should be an array with the filter element by this char and position.", () => {
-      consumption.reset();
-      const input = ["01111", "01010"];
-      const recd = ["01010"];
-      const value = consumption.filterElementByCharInPosition(input, 0, 2);
-      expect(value).toEqual(recd);
-    });
-    it("Should be the CO2 scrubber rating in binary.", () => {
-      consumption.reset();
-      consumption.exec(mockRows);
+    it("Should be the oxygen generator rating in binary.", () => {
       const recd = ["01010"];
       const value = consumption.getCO2Binary(mockRows);
       expect(value).toEqual(recd);
     });
-    it("Should be the CO2 scrubber rating in binary.", () => {
-      consumption.reset();
-      consumption.exec(dataRows);
-      const recd = ["111101000110"];
+    it("Should be the oxygen generator rating in binary.", () => {
+      const recd = ["110010000101"];
       const value = consumption.getCO2Binary(dataRows);
       expect(value).toEqual(recd);
     });
     it("Should be CO2 scrubber rating in decimal.", () => {
-      consumption.reset();
-      consumption.exec(mockRows);
       const value = consumption.getCO2(mockRows);
       expect(value).toEqual(10);
     });
     it("Should be CO2 scrubber rating in decimal.", () => {
-      consumption.reset();
-      consumption.exec(dataRows);
       const value = consumption.getCO2(dataRows);
-      expect(value).toEqual(3910);
+      expect(value).toEqual(3205);
     });
     it("Should be the result.", () => {
       consumption.reset();
@@ -196,7 +169,7 @@ describe("Day 3", () => {
       consumption.reset();
       consumption.exec(dataRows);
       const value = consumption.getResult(dataRows);
-      expect(value).toEqual(746810);
+      expect(value).toEqual(903810);
     });
   });
 });
