@@ -1,15 +1,18 @@
 class Bingo {
   getNumbers(data) {
     let arr = [];
-    let res = [];
     for (let i = 0; i < data.length; i++) arr.push(data.slice(i, i + 1));
-    arr.forEach((element) => {
-      res.push(element);
-    });
-    return res;
+    return arr;
   }
-  getBalls(arr) {
-    return arr[0];
+  getBalls(num) {
+    return num[0]
+  }
+  getNumberOfCards(num) {
+    let res = []
+    for (let i = 1; i < num.length; i++) {
+        res.push(num[i])
+    }
+    return res.length
   }
 }
 

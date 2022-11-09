@@ -10,7 +10,18 @@ class Loader {
   }
   load2(path) {
     try {
-      return fs.readFileSync(path).toString("utf-8").replace( /\n/g, " " ).split( " " );
+      return fs
+        .readFileSync(path)
+        .toString("utf-8")
+        .replace(/\n/g, " ")
+        .split(" ");
+    } catch (error) {
+      console.error(error.message || error);
+    }
+  }
+  load3(path) {
+    try {
+      return fs.readFileSync(path).toString("utf-8").split("\n\n");
     } catch (error) {
       console.error(error.message || error);
     }
