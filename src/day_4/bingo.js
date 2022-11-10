@@ -79,7 +79,19 @@ class Bingo {
       });
     }
     return res;
-    // return card.filter((x) => !res.includes(x));
+  }
+  updateRow(numArr, n, row) {
+    const cardRow = this.getCardRows(numArr, n, row);
+    const occu = this.getOccurrences(numArr, n, 0, 5);
+    let res = [];
+    for (let i = 0; i < occu.length; i++) {
+      cardRow.forEach((element) => {
+        if (element === occu[i]) {
+          res.push(element);
+        }
+      });
+    }
+    return cardRow.filter((x) => !res.includes(x));
   }
 }
 

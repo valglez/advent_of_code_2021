@@ -107,5 +107,12 @@ describe("Day 4", () => {
       const value = bingo.getOccurrences(num, card, sliceIni, sliceFin);
       expect(value).toEqual([7, 4, 9, 5, 11]);
     });
+    it("Should return an array of this row with the occurrences removed for this slice.", () => {
+      const num = bingo.getNumbers(mockRows);
+      const card = 1;
+      const row = 1;
+      const value = bingo.updateRow(num, card, row);
+      expect(value).toEqual([22, 13, 17, 0]);
+    });
   });
 });
