@@ -66,6 +66,21 @@ class Bingo {
         return column;
     }
   }
+  getOccurrences(numArr, n, ini, fin) {
+    const balls = this.getBalls(numArr);
+    const card = this.getSingleCard(numArr, n);
+    const sliceBalls = balls.slice(ini, fin);
+    let res = [];
+    for (let i = 0; i < sliceBalls.length; i++) {
+      card.forEach((element) => {
+        if (element === sliceBalls[i]) {
+          res.push(element);
+        }
+      });
+    }
+    return res;
+    // return card.filter((x) => !res.includes(x));
+  }
 }
 
 module.exports = Bingo;

@@ -99,5 +99,13 @@ describe("Day 4", () => {
       const value = bingo.getCardColumns(num, 1, 1);
       expect(value).toEqual([22, 8, 21, 6, 1]);
     });
+    it("Should return an array with the occurrences for this slice.", () => {
+      const num = bingo.getNumbers(mockRows);
+      const card = 1;
+      const sliceIni = 0;
+      const sliceFin = 5;
+      const value = bingo.getOccurrences(num, card, sliceIni, sliceFin);
+      expect(value).toEqual([7, 4, 9, 5, 11]);
+    });
   });
 });
