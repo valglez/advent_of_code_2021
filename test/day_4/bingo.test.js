@@ -81,13 +81,23 @@ describe("Day 4", () => {
     });
     it("Should return the same number of numbers for all cards.", () => {
       const num = bingo.getNumbers(mockRows);
-      const value = bingo.VerifyCards(num)
+      const value = bingo.VerifyNumberOfNumbersCards(num);
       expect(value).toEqual(true);
     });
     it("Should return the same number of numbers for all cards.", () => {
       const num = bingo.getNumbers(dataRows);
-      const value = bingo.VerifyCards(num)
+      const value = bingo.VerifyNumberOfNumbersCards(num);
       expect(value).toEqual(true);
+    });
+    it("Should return the row 2 for card 1.", () => {
+      const num = bingo.getNumbers(mockRows);
+      const value = bingo.getCardRows(num, 1, 2);
+      expect(value).toEqual([8, 2, 23, 4, 24]);
+    });
+    it("Should return the column 1 for card 1.", () => {
+      const num = bingo.getNumbers(mockRows);
+      const value = bingo.getCardColumns(num, 1, 1);
+      expect(value).toEqual([22, 8, 21, 6, 1]);
     });
   });
 });
