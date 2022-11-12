@@ -129,12 +129,12 @@ describe("Day 4", () => {
       const num = bingo.getNumbers(mockRows);
       const card = 1;
       const row = 1;
-      const value = bingo.updateRow(num, card, row);
+      const value = bingo.updateRow(num, card, row, 0, 5);
       expect(value).toEqual([22, 13, 17, 0]);
     });
     it("Should return an array of all rows with the occurrences removed for this slice.", () => {
       const num = bingo.getNumbers(mockRows);
-      const value = bingo.updateAllRows(num);
+      const value = bingo.updateAllRows(num, 0, 5);
       expect(value).toEqual([
         [22, 13, 17, 0],
         [8, 2, 23, 24],

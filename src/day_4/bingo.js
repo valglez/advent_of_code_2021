@@ -38,14 +38,11 @@ class Bingo {
     }
     return count === size ? true : false;
   }
-  //TO DO
-  //Should return an array for each card occurrences
   getOccurrences2(numArr, ini, fin) {
     const balls = this.getBalls(numArr);
     const card = this.getTotalCardsFormated(numArr);
     const sliceBalls = balls.slice(ini, fin);
     let res = [];
-    let res2 = [];
     for (let i = 0; i < sliceBalls.length; i++) {
       for (let j = 0; j < card.length; j++) {
         card[j].forEach((element) => {
@@ -57,9 +54,9 @@ class Bingo {
     }
     return res;
   }
-  updateRow(numArr, n, row) {
+  updateRow(numArr, n, row, ini, fin) {
     const cardRow = this.getCardRows(numArr, n, row);
-    const occu = this.getOccurrences(numArr, n, 0, 5);
+    const occu = this.getOccurrences(numArr, n, ini, fin);
     let res = [];
     for (let i = 0; i < occu.length; i++) {
       cardRow.forEach((element) => {
@@ -70,16 +67,29 @@ class Bingo {
     }
     return cardRow.filter((x) => !res.includes(x));
   }
-  updateAllRows(numArr) {
+  updateAllRows(numArr, ini, fin) {
+    const size = this.getTotalCards(numArr).length;
+    let cards = this.getAllCardsRows(numArr);
+    let occu = [];
+    let arr = [];
+    for (let i = 0; i < 15; i++) {
+      for (let j = 1; j < size + 1; j++) {
+        for (let k = 1; k < 6; k++) {
+          occu.push(this.updateRow(numArr, j, k, ini, fin));
+        }
+      }
+      arr.push(cards[i].filter((card) => occu[i].includes(card)));
+    }
+    return arr;
+  }
+  getAllCardsRows(numArr) {
     const size = this.getTotalCards(numArr).length;
     let res = [];
-    for (let i = 1; i < size + 1; i++) {
-      for (let j = 1; j < 6; j++) {
-        let update = this.updateRow(numArr, i, j);
-        res.push(update);
+    for (let j = 1; j < size + 1; j++) {
+      for (let k = 1; k < 6; k++) {
+        res.push(this.getCardRows(numArr, j, k));
       }
     }
-    console.log(res);
     return res;
   }
   getOccurrences(numArr, n, ini, fin) {
