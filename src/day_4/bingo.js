@@ -45,6 +45,7 @@ class Bingo {
     const card = this.getTotalCardsFormated(numArr);
     const sliceBalls = balls.slice(ini, fin);
     let res = [];
+    let res2 = [];
     for (let i = 0; i < sliceBalls.length; i++) {
       for (let j = 0; j < card.length; j++) {
         card[j].forEach((element) => {
@@ -68,6 +69,18 @@ class Bingo {
       });
     }
     return cardRow.filter((x) => !res.includes(x));
+  }
+  updateAllRows(numArr) {
+    const size = this.getTotalCards(numArr).length;
+    let res = [];
+    for (let i = 1; i < size + 1; i++) {
+      for (let j = 1; j < 6; j++) {
+        let update = this.updateRow(numArr, i, j);
+        res.push(update);
+      }
+    }
+    console.log(res);
+    return res;
   }
   getOccurrences(numArr, n, ini, fin) {
     const balls = this.getBalls(numArr);

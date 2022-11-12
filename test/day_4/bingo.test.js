@@ -132,15 +132,25 @@ describe("Day 4", () => {
       const value = bingo.updateRow(num, card, row);
       expect(value).toEqual([22, 13, 17, 0]);
     });
-    it("Should return an array for each card occurrences.", () => {
+    it("Should return an array of all rows with the occurrences removed for this slice.", () => {
       const num = bingo.getNumbers(mockRows);
-      const sliceIni = 0;
-      const sliceFin = 5;
-      const value = bingo.getOccurrences2(num, sliceIni, sliceFin);
+      const value = bingo.updateAllRows(num);
       expect(value).toEqual([
-        [7, 4, 9, 5, 11],
-        [7, 4, 9, 5, 11],
-        [7, 4, 9, 5, 11],
+        [22, 13, 17, 0],
+        [8, 2, 23, 24],
+        [21, 14, 16],
+        [6, 10, 3, 18],
+        [1, 12, 20, 15, 19],
+        [3, 15, 0, 2, 22],
+        [18, 13, 17],
+        [19, 8, 25, 23],
+        [20, 10, 24],
+        [14, 21, 16, 12, 6],
+        [14, 21, 17, 24],
+        [10, 16, 15, 19],
+        [18, 8, 23, 26, 20],
+        [22, 13, 6],
+        [2, 0, 12, 3],
       ]);
     });
   });
