@@ -38,21 +38,11 @@ class Bingo {
     }
     return count === size ? true : false;
   }
-  getOccurrences2(numArr, ini, fin) {
-    const balls = this.getBalls(numArr);
-    const card = this.getTotalCardsFormated(numArr);
-    const sliceBalls = balls.slice(ini, fin);
-    let res = [];
-    for (let i = 0; i < sliceBalls.length; i++) {
-      for (let j = 0; j < card.length; j++) {
-        card[j].forEach((element) => {
-          if (element === sliceBalls[i]) {
-            res.push(element);
-          }
-        });
-      }
-    }
-    return res;
+  updateSingleCard(numArr, n, ini, fin) {
+    const occu = this.getOccurrences(numArr, n, ini, fin);
+    let card = this.getSingleCard(numArr, n);
+    console.log(card.filter((x) => !occu.includes(x)))
+    return card.filter((x) => !occu.includes(x));
   }
   updateRow(numArr, n, row, ini, fin) {
     const cardRow = this.getCardRows(numArr, n, row);

@@ -153,5 +153,13 @@ describe("Day 4", () => {
         [2, 0, 12, 3],
       ]);
     });
+    it("Should return updated single card for this slice.", () => {
+      const num = bingo.getNumbers(mockRows);
+      const value = bingo.updateSingleCard(num, 1, 0, 5);
+      expect(value).toEqual([
+        22, 13, 17, 0, 8, 2, 23, 24, 21, 14, 16, 6, 10, 3, 18, 1, 12, 20, 15,
+        19,
+      ]);
+    });
   });
 });
